@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>PyFlakes Help</title>
+  <!-- <link rel="stylesheet" type="text/css" href="Documentation.css" /> -->
+</head>
+
+<body>
+<h2>PyFlakes Help</h2>
+
+<p>PythonCodeAnalyserApp supports PyFlakes-0.9.2. A clone of PyFlakes versionned 0.9.2.0.1 shipped withPythonCodeAnalyserApp adds some
+features to PyFlakes-0.9.2.</p>
+
+<p></p>
+
+<p>PyFlakes-0.9.2.0.1 additional features are:</p>
+<ul>
+  <li>indentation check</li>
+  <li>check for multiple imports on the same line</li>
+  <li>re import</li>
+  <li>comparison has no effect check</li>
+  <li>distinguish between parameters/variables not used</li>
+</ul>
+
+<p>
+Moreover, there is the possibility to disable some warnings (especially when these are wrong, ie PyFlakes outputs false warnings) through
+special annotatiions in the python code.
+</p>
+
+<p>The features in detail:</p>
+<ul>
+  <li><strong>disable some warnings : example with "unused import" message</strong> 
+    <p>if PyFlakes outputs an "unused import" warning although the import is indeed used, the user may write in its source code
+    at the line of the import the pyflakes directive</p>
+    <code>import &lt;module&gt; # pyflakes:ignore-msg#import not used</code> 
+    <p>Note: this type of false warning occurs when</p>
+    <ul>
+      <li>the imported module defines statements which are executed when the import is performed (initialization statements)</li>
+      <li>(what else)...</li>
+    </ul>
+    <p></p>
+  </li>
+  <li><strong>multiple imports on the same line</strong> 
+    <p>output a warning in the trivial case where more than 1 import on the same line is given</p>
+    <p></p>
+  </li>
+  <li><strong>re- imports </strong> 
+    <p>output a warning in the trivial case where a module is imported twice</p>
+    <p></p>
+  </li>
+  <li><strong>comparison check</strong> 
+    <p>statements of the form</p>
+    <pre>a == b</pre>
+    <pre>a != b</pre>
+    <p>(not inside a <code>"If"</code> statement , or <code>"Return"</code> etc.) have no effect, and a warning is thus raised</p>
+    <p></p>
+  </li>
+ <li><strong>indentation check</strong> 
+    <p>statements of the form</p>
+    <pre>if 1:</pre>
+    <pre>        a = 1 # 8 empty spaces</pre>
+    <p>generate a "BadIndentation" message</p>
+    <p></p>
+  </li>
+</ul>
+
+<p>Finally, notice that the messages of PyFlakes-0.9.2.0.1 are slightly different from those of PyFlakes-0.9.2</p>
+</body>
+</html>

@@ -1,0 +1,4 @@
+#!/usr/bin/python
+
+from pyanalysers import PythonCodeAnalysersApp
+PythonCodeAnalysersApp.main()

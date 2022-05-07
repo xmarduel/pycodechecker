@@ -1,0 +1,30 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>Clear16x16.png</file>
+    <file>Clear32x32.png</file>
+    <file>cog.png</file>
+    <file>cross.png</file>
+    <file>cross2.png</file>
+    <file>FilesConfig.png</file>
+    <file>golf_ball.png</file>
+    <file>insect.ico</file>
+    <file>insect.png</file>
+    <file>nuclear.png</file>
+    <file>Pause16x16.png</file>
+    <file>Pause32x32.png</file>
+    <file>Play16x16.png</file>
+    <file>Play32x32.png</file>
+    <file>python.gif</file>
+    <file>rainbow.png</file>
+    <file>Repair.png</file>
+    <file>rocket.png</file>
+    <file>ruby.png</file>
+    <file>run.png</file>
+    <file>sport_basketball.png</file>
+    <file>sport_soccer.png</file>
+    <file>Stop16x16.png</file>
+    <file>Stop32x32.png</file>
+    <file>ToolsConfig.png</file>
+    <file>Wrench.png</file>
+  </qresource>
+</RCC>

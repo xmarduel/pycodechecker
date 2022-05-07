@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>PyMetrics Help</title>
+  <!-- <link rel="stylesheet" type="text/css" href="Documentation.css" /> -->
+</head>
+
+<body>
+<h2>PyMetrics Help</h2>
+
+<p>PythonCodeAnalyserApp supports PyMetrics-0.8.1 and PyMetrics-0.8.2.1</p>
+<p>PyMetrics-0.8.2.1 fixes some bugs in versions 0.8.1 (see below for details).</p>
+
+<p></p>
+
+<h3>PyMetrics-0.8.1 command line help</h3>
+<pre>Options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+  -s SQLFILENAME, --sql=SQLFILENAME
+                        name of output SQL command file. (Default is metricData.sql)
+  -t SQLTOKENTABLENAME, --tokentable=SQLTOKENTABLENAME
+                        name of output SQL token table. (Default is metricTokens)
+  -m SQLMETRICSTABLENAME, --metricstable=SQLMETRICSTABLENAME
+                        name of output SQL metrics table. (Default is metricData)</pre>
+
+<p></p>
+<pre>  -c CSVFILENAME, --csv=CSVFILENAME
+                        name of output CSV data file. (Default is metricData.csv)
+  -f INFILELIST, --files=INFILELIST
+                        File containing list of path names to modules for analysis.
+  -i INCLUDEMETRICSSTR, --include=INCLUDEMETRICSSTR
+                        list of metrics to include in run. This is a comma
+                        separated list of metric module names with no
+                        whitespace. Optionally, you can specify the class name
+                        of the metric by following the module name with a
+                        colon (:) and the metric class name. (Default metrics
+                        are 'simple:SimpleMetric,mccabe:McCabeMetric,sloc:SLOC
+                        Metric'. Default metric class name for metric module
+                        'wxYz' is 'WxYzMetric' when only module name given --
+                        note capitalized metric class name.)
+  -l LIBNAME, --library=LIBNAME
+                        user-defined name applied to collection of modules (Default is '')
+  -e, --exists          assume SQL tables exist and does not generate creation
+                        code. Using this option sets option -N. (Default is False)
+  -N, --noold           create new command output files and tables after
+                        deleting old results, if any. Ignored if -e is set. (Default is False)
+  -B, --nobasic         suppress production of Basic metrics (Default is False)
+  -S, --nosql           suppress production of output SQL command text file. (Default is False)
+  -C, --nocsv           suppress production of CSV output text file. (Default is False)
+  -H, --noheadings      suppress heading line in csv file. (Default is False)
+  -k, --kwcnt           generate keyword counts. (Default is False)
+  -K, --nokwcnt         suppress keyword counts. (Default is True)
+  -q, --quiet           suppress normal summary output to stdout. (Default is False)
+  -z, --zero            display zero or empty values in output to stdout.
+                        (Default is to suppress zero/empty output)
+  -v, --verbose         Produce verbose output - more -v's produce more
+                        output. (Default is no verbose output to stdout)
+  -d, --debug           Provide debug output, not usually generated - internal use only</pre>
+
+<p>Note: There is a bug in the installation procedure of PyMetrics-0.8.1 on Windows. To install PyMetrics, first unpack it
+on LINUX, change the name of the PyMetrics file so that the file has a different name as the existing directory "PyMetrics"
+(which causes the installation bug on Windows), then copy the modification on Windows.</p>
+
+<h3>PyMetrics-0.8.2.1</h3>
+
+<p>PyMetrics-0.8.2.1 fixes some bugs in PyMetrics-0.8.1:</p>
+<ul>
+  <li>fix when a function is defined on a single line.</li>
+  <li>fix when a class is defined on a single line.</li>
+  <li>fix the SQL output for """ character. Moreover, the output is done for SQLite. The tables "primary id" are also
+    differents.</li>
+  <li>new command line option: <code>-y, --quietmoduledocstring</code> to disable output when module doc string is not given.</li>
+</ul>
+</body>
+</html>

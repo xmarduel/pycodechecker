@@ -1,0 +1,24 @@
+body {
+	font-family: "Verdana","Arial","Helvetica","MS Sans Serif","Sans-Serif";
+	font-size: 10pt;
+}
+
+td {
+	font-size: 10pt;
+}
+
+h1.title {
+	font-size: 20pt;
+	font-family: "Tahoma", "Lucida", "Helvetica", "Arial", "Sans-Serif";
+	text-align: right;
+	padding: .1em; 
+}
+
+table {
+	padding: .5em;
+}
+
+p {
+	font-family: "Verdana","Arial","Helvetica","MS Sans Serif","Sans-Serif";
+	font-size: 10pt;
+}

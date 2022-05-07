@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+  <title>PythonCodeAnalysersApp User Guide</title>
+  <!-- <link rel="stylesheet" type="text/css" href="Documentation.css" /> -->
+  <style type="text/css">
+                        body {
+                                font-family: "Verdana","Arial","Helvetica","MS Sans Serif","Sans-Serif";
+                                font-size: 10pt;
+                        }
+  </style>
+</head>
+
+<body>
+<h2>PythonCodeAnalysersApp Introduction</h2>
+
+<h3>Version 2.0.0</h3>
+
+<h3>Februar 2019</h3>
+<hr />
+
+<h2>Contents</h2>
+<ul>
+  <li><a href="#1">1 PythonCodeAnalysersApp Primer</a> 
+    <ul>
+      <li><a href="#1.1">1.1 General</a></li>
+      <li><a href="#1.2">1.2 Key Features</a></li>
+    </ul>
+  </li>
+  <li><a href="#2">2 PythonCodeAnalysersApp Basics</a> 
+    <ul>
+      <li><a href="#2.1">2.1 GUI Overview</a></li>
+      <li><a href="#2.2">2.2 App Settings</a> 
+        <ul>
+          <li><a href="#2.2.1">2.2.1 Files/Tools run-order</a></li>
+          <li><a href="#2.2.2">2.2.2 Files InfoSets</a></li>
+        </ul>
+      </li>
+      <li><a href="#2.3">2.3 Tools Configurations</a> 
+        <ul>
+          <li><a href="#2.3.1">2.3.1 PyLint configuration</a></li>
+          <li><a href="#2.3.3">2.3.2 PyFlakes configuration</a></li>
+          <li><a href="#2.3.4">2.3.3 PyMetrics configuration</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#3">3 Installation</a></li>
+</ul>
+<hr />
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+<!-- xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+
+<h2><a name="1" id="_1">1 PythonCodeAnalysersApp Primer</a></h2>
+
+<h3><a name="1.1" id="_1.1">1.1 General</a></h3>
+
+<p>PythonCodeAnalysersApp is an GUI front-end for 5 python code analysers:</p>
+<ul>
+  <li>PyLint</li>
+  <li>PyFlakes</li>
+  <li>PyMetrics</li>
+</ul>
+
+<p>You have to <a href="#3">install</a> these packages if you want that this application does something useful.</p>
+
+<p>How can this Application help you? Well, as a Python developper (what you should be if you bought this app), you
+already know that Python is an interpreted langage. This means, among others, that there is no "compiler" to inform you
+about syntax errors in the code. You "discover" yours errors when the code runs and makes something wrong. Of course,
+today there are editors which can help you avoiding syntax errors, informing you in "realtime" about all kinds of
+errors. That's great!</p>
+
+<p>The goal of <strong>PythonCodeAnalysersApp</strong> is different. With this app, you can check you code "off-line".
+"So what?" could you say... "Let's just use PyLint or PyFlakes for this purpose!". You're right, but
+with this app you've got a <strong>MAJOR</strong> avantage above using these tools from the command line. As the
+options for the tools are <strong>displayed in a GUI</strong>, you've got a <strong>better overview</strong> of all
+options (did you ever get an overview of all possible settings for PyLint or PyChecker for example). The
+<strong>output</strong> of the tools are also displayed in a fancy, <strong>readable manner</strong>. It is possible to
+<strong>quickly edit and fix the errors/warnings</strong> by clicking on the error/warning line: the related file will
+open at the right line in the application itself. And the output of the processes can be saved in text or html to
+create reports.</p>
+
+<p>Finally, you can also <strong>save a lot of time</strong> (never complained how slow PyLint is?) if your computer
+has a <strong>multicores CPU</strong>: it is possible to set in the GUI how many processes can be run in parrallel.
+When using PyLint from the command line with many input files, the files are processed one after the other. With
+<strong>PythonCodeAnalysersApp</strong>, the files are processed then in parrallel (number of simultaneous process is
+up to you) and the output is of course serialized right).</p>
+
+<p><span style="color: rgb(255, 0, 0);">****** Most important, experience shows, developers really check their
+code, when analysers are used (and their output are displayed) in a fancy GUI. ******</span></p>
+
+<h3><a name="1.2" id="_1.2">1.2 Key Features</a></h3>
+<ul>
+  <li>Organise the files to analyse in "FilesInfoSet", with ability to enable/disable each file in the
+  "FileInfoSet"</li>
+  <li>Graphical edition of the command-line for each tool (all options are accessible from the GUI)</li>
+  <li>run the processes in parrallel (optional)</li>
+  <li>colorized output of the tools</li>
+  <li>fix errors/warnings in the application (small editor embedded)</li>
+  <li>Text or HTML output of the tools output</li>
+</ul>
+
+<h2><a name="2" id="_2"></a>1 PythonCodeAnalysersApp Basics</h2>
+
+<h3><a name="2.1" id="_2.1"></a>GUI Overview</h3>
+
+<p>Let's have a view of the main application window.</p>
+
+<p><img alt="AppMainWindow" src="AppMainWindow.jpg" width="1020" height="753" />The main window is divided in four
+areas:</p>
+<ul>
+  <li>a FileSystem browser (left right)</li>
+  <li>an editor window (top right)</li>
+  <li>loggers windows (in the middle) for analysers output</li>
+  <li>logger window (bottom) for the app output</li>
+</ul>
+
+<p></p>
+
+<p>First you define some "FilesInfoSet" ie a list of files that you wish to check by clicking the <img alt=""
+src="../images/FilesConfig.png" width="16" height="16" />in the toolbar. You can have as many "FilesInfoSet" as you
+wish. Inside a FileInfoSet, you can always activate or deactivate ("filter") the files that you do not want to check
+(too long processing time for example...).</p>
+
+<p><img alt="AppSettingWindow" src="AppSettingsWindow.jpg" width="987" height="441" /></p>
+
+<p>You select your "active" FileInfoSet from the application toolbar. The list of all FileInfoSet is available in the
+toolbar "choice" control.</p>
+
+<p>Then you select which "analysers" you want to use, by clicking the "toggle" buttons in the toolbar:</p>
+<ul>
+  <li>PyLint: press "on" the diamond button <img alt="ruby" src="../images/ruby.png" width="16" height="16" /></li>
+  <li>PyFlakes: press "on" the "basketball" button <img alt="basket" src="../images/sport_basketball.png" width="16" height="16" /></li>
+  <li>PyMetrics: press "on" the "rainbow" button <img alt="rainbow" src="../images/rainbow.png" width="16" height="16"/></li>
+</ul>
+
+<p>You can of course select/deselect more than one analyser.</p>
+
+<p>After that, you can configure the "analysers". Here is the UI a great help, as there is plenty of configuration
+options, especially for PyLint and PyChecker. For this purpose, open the "Tools Configuration" dialog by pessing the
+<img alt="tools" src="../images/ToolsConfig.png" width="16" height="16" />button in the toolbar.</p>
+
+<p><img alt="tools" src="ToolsConfigWindow.jpg" width="747" height="717" /></p>
+
+<p>A dialog pops-up, where all options for <strong>PyLint</strong>,
+<strong>PyFlakes</strong> and <strong>PyMetrics</strong> are configurable.
+Of course, after a session, your configuration for the analysers will be save and reloaded when a new session is started.</p>
+
+<p>You can now start the analysers. Just press the "run" button <img alt="run" src="../images/run.png" width="16"
+height="16" /> in the toolbar. The output of the analysers will be logged in the "logger" windows. The fact that the
+messages are displayed in colors make them quite readable (sounds trivial but really helpful). You can stop the job(s)
+by clicking the "cancel" button <img alt="stop" src="../images/cross.png" width="16" height="16" /> in the toolbar.</p>
+
+<p>Double clicking in the "processes window" on a line jumps to the related process in the "processes output
+window".</p>
+
+<p>Now, to my opinion, the "great" thing: you can double-click in the loggers on some errors/warnings messages: the
+related file will open at the right line in the editor window, so that you're ready to fix the error/warning (seems
+trivial too, but this make you win a lot of time, and is just fun). Finally you can also save the output -in text or in
+html- so that you get nice reports.</p>
+
+<p>By the way, have you noticed in the toolbar the "spinner"? With it, you can set the number of processes that will
+run in <strong>parrallel</strong>. Use it if you have a multicore computer!</p>
+
+<h3><a name="2.2" id="_2.2">2.2 Settings</a></h3>
+
+<p>To open the Settings dialog, click on the Toolbar button <img alt="appsettings" src="../images/FilesConfig.png"
+width="16" height="16" />in the toolbar.</p>
+
+<h4><a name="2.2.1" id="_2.2.1">2.2.1 Files/Tools run-order</a></h4>
+
+<p>you can schedule the order in which the files are processed:</p>
+<ul>
+  <li>File per File</li>
+  <li>Tool per Tool</li>
+</ul>
+
+<h5><a name="2.2.1.1" id="_2.2.1.1">2.2.1.1 File per File</a></h5>
+
+<p>If you have selected more than one tool, the process order will be</p>
+<ul>
+  <li>file1 : tool1, tool2 ,...</li>
+  <li>file2 : tool1, tool2, ...</li>
+  <li>file3 : tool1, tool2, ...</li>
+</ul>
+
+<p>The order of the files which are processed is given by their order in the FileInfoSet. The order of the tools is
+given by the "Tool Run Order" setting.</p>
+
+<h5><a name="2.2.1.2" id="_2.2.1.2">2.2.1.2 Tool per Tool</a></h5>
+
+<p>If you have selected more than one file, the process order will bel</p>
+<ul>
+  <li>tool1 : file1, file2, file3, ...</li>
+  <li>tool2 : file1, file2, file3, ...</li>
+</ul>
+
+<p>The order of the files which are processed is given by their order in the FileInfoSet. The order of the tools is
+given by the "Tool Run Order" setting.</p>
+
+<h4><a name="2.2.2" id="_2.2.2">2.2.2 Files InfoSets</a></h4>
+
+<p>Files to be processed are bundled in an "FileInfoSet". You can edit (add, remove and select/deselect) files in the
+info set. You can also create new infosets or delete existing ones.</p>
+
+<p>To add a file to a given FileInfoSet, browse the FileSystem tree, select a file and press the "<strong>+</strong>"
+taste. To delete a file given in a FileInfoSet, utilize the context menu on this file and select the commando "Delete
+Selection(s)".</p>
+
+<h5><a name="2.2.2.1" id="_2.2.2.1"></a>2.2.2.1 Select All</h5>
+
+<h5><a name="2.2.2.2" id="_2.2.2.2"></a>2.2.2.2 UnSelect All</h5>
+
+<h5><a name="2.2.2.3" id="_2.2.2.3"></a>2.2.2.3 Toggle Selections</h5>
+
+<h5><a name="2.2.2.4" id="_2.2.2.4"></a>2.2.2.4 Sort Items</h5>
+
+<p>Sort items alphabetically</p>
+
+<h5><a name="2.2.2.5" id="_2.2.2.5"></a>2.2.2.5 Remove Unselected Items</h5>
+
+<h3><a name="2.3" id="_2.3"></a>2.3 Tools Configurations</h3>
+
+<p>To open the Tools-Configuration dialog, click on the Toolbar button <img alt="tools" src="../images/ToolsConfig.png"
+width="16" height="16" />.</p>
+
+<h4><a name="2.3.1" id="_2.3.1">2.3.1 PyLint configuration</a></h4>
+
+<p>ToDo</p>
+
+<h4><a name="2.3.2" id="_2.3.2">2.3.2 PyFlakes configuration</a></h4>
+
+<p>No need to configure yet!</p>
+
+<h4><a name="2.3.3" id="_2.3.3">2.3.3 PyMetrics configuration</a></h4>
+
+<p>ToDo</p>
+
+
+<h2><a name="3" id="_3">3 Installation</a></h2>
+
+<p>In the python folder, the following files must be present:</p>
+<ul>
+  <li><code>pylint</code></li>
+  <li><code>pyflakes</code></li>
+  <li><code>pymetrics</code></li>
+</ul>
+
+<p>Check also that the scripts are installed contain the following.</p>
+
+<h3>PyLint</h3>
+
+<p>File <code>"pylint"</code> has to be of the form:</p>
+<pre>#!/usr/bin/python
+
+# EASY-INSTALL-ENTRY-SCRIPT: 'pylint==1.1.0','console_scripts','pylint'
+__requires__ = 'pylint==1.1.0'
+import sys
+from pkg_resources import load_entry_point
+
+if __name__ == '__main__':
+    sys.exit(
+        load_entry_point('pylint==1.1.0', 'console_scripts', 'pylint')()
+    )
+</pre>
+
+<h3>PyFlakes</h3>
+
+<p>File "<code>pyflakes</code>" has to be of the form:</p>
+
+<pre>#!/usr/bin/python
+
+from pyflakes import api
+api.main()
+</pre>
+
+<h3>PyMetrics</h3>
+
+<p>File <code>"pymetrics"</code> has to be of the form:</p>
+<pre>#!/usr/bin/python
+
+import PyMetrics.PyMetrics as pm
+import sys
+
+pm.main ()
+sys.exit (0)
+</pre>
+
+
+</body>
+</html>

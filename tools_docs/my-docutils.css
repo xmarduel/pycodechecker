@@ -1,0 +1,34 @@
+/*
+:Author: Your Name
+:Contact: Your Email Address
+:Copyright: This stylesheet has been placed in the public domain.
+
+Stylesheet for use with Docutils.  [Optionally place a more
+detailed description here.]
+*/
+
+@import url(html4css1.css);
+
+/* Your customizations go here.  For example: */
+
+
+h1, h2, h3, h4, h5, h6, p.topic-title {
+  color: green }
+
+h1, h2, h3 {
+   font-size:100%
+}
+
+td.field-body {
+	color:blue  ;
+}
+span.pre {
+	color: orange
+}
+p.first {                  
+  color:blue  ;
+  /* Override more specific margin styles with "! important". */
+  /*margin-bottom: -1em;
+  margin-top:0;*/
+}
+

@@ -1,0 +1,1849 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="content-type" />
+  <title>PyLint Help</title>
+  <style type="text/css">
+
+h1, h2, h3, h4, h5, h6, p.topic-title {
+        color: green }
+
+h1, h2, h3 {
+        font-size:100%
+}
+
+td.field-body {
+        color:blue  ;
+}
+span.pre {
+        color: orange
+}
+p.first {
+        color:blue  ;
+        /* Override more specific margin styles with "! important". */
+        /*margin-bottom: -1em;
+        margin-top:0;*/
+}
+  </style>
+</head>
+
+<body>
+<h2>PyLint Help</h2>
+
+<h3>PyLint command line help</h3>
+<pre>usage:  pylint.bat [options] module_or_package
+
+  Check that a module satisfy a coding standard (and more !).
+
+    pylint.bat --help
+    
+  Display this help message and exit.
+
+    pylint.bat --help-msg &lt;msg-id&gt;[,&lt;msg-id&gt;]
+
+  Display help messages about given message identifiers and exit.
+
+
+options:
+  --version             show program's version number and exit
+  -h, --help            show this help message and exit
+
+  Master:
+    --rcfile=&lt;file&gt;     Specify a configuration file.
+    --init-hook=&lt;code&gt;  Python code to execute, usually for sys.path
+                        manipulation such as pygtk.require().
+    -e, --errors-only   In error mode, checkers without error messages are
+                        disabled and for others, only the ERROR messages are
+                        displayed, and no reports are done by default
+    --profile=&lt;y_or_n&gt;  Profiled execution. [current: no]
+    --ignore=&lt;file&gt;     Add &lt;file or directory&gt; to the black list. It should
+                        be a base name, not a path. You may set this option
+                        multiple times. [current: CVS]
+    --persistent=&lt;y_or_n&gt;
+                        Pickle collected data for later comparisons. [current:
+                        yes]
+    --cache-size=&lt;size&gt;
+                        Set the cache size for astng objects. [current: 500]
+    --load-plugins=&lt;modules&gt;
+                        List of plugins (as comma separated values of python
+                        modules names) to load, usually to register additional
+                        checkers. [current: none]
+
+  Commands:
+    --help-msg=&lt;msg-id&gt;
+                        Display a help message for the given message id and
+                        exit. The value may be a comma separated list of
+                        message ids.
+    --list-msgs         Generate pylint's full documentation.
+    --generate-rcfile   Generate a sample configuration file according to the
+                        current configuration. You can put other options
+                        before this one to get them in the generated
+                        configuration.
+
+  Messages control:
+    --enable-checker=&lt;checker ids&gt;
+                        Enable only checker(s) with the given id(s).
+                        This option conflicts with the disable-checker option
+    --disable-checker=&lt;checker ids&gt;
+                        Enable all checker(s) except those with the
+                        given id(s). This option conflicts
+                        with the enable-checker option
+    --enable-msg-cat=&lt;msg cats&gt;
+                        Enable all messages in the listed categories (IRCWEF).
+    --disable-msg-cat=&lt;msg cats&gt;
+                        Disable all messages in the listed categories
+                        (IRCWEF). [current: I]
+    --enable-msg=&lt;msg ids&gt;
+                        Enable the message(s) with the given id(s).
+    --disable-msg=&lt;msg ids&gt;
+                        Disable the message(s) with the given id(s).
+
+  Reports:
+    -f &lt;format&gt;, --output-format=&lt;format&gt;
+                        Set the output format. Available formats are text,
+                        parseable, colorized, msvs (visual studio) and html
+                        [current: text]
+    -i &lt;y_or_n&gt;, --include-ids=&lt;y_or_n&gt;
+                        Include message's id in output [current: no]
+    --files-output=&lt;y_or_n&gt;
+                        Put messages in a separate file for each module /
+                        package specified on the command line instead of
+                        printing them on stdout. Reports (if any) will be
+                        written in a file name "pylint_global.[txt|html]".
+                        [current: no]
+    -r &lt;y_or_n&gt;, --reports=&lt;y_or_n&gt;
+                        Tells wether to display a full report or only the
+                        messages [current: yes]
+    --evaluation=&lt;python_expression&gt;
+                        Python expression which should return a note less than
+                        10 (10 is the highest note). You have access to the
+                        variables errors warning, statement which respectivly
+                        contain the number of errors / warnings messages and
+                        the total number of statements analyzed. This is used
+                        by the  global evaluation report (R0004). [current:
+                        10.0 - ((float(5 * error + warning + refactor +
+                        convention) / statement) * 10)]
+    --comment=&lt;y_or_n&gt;  Add a comment according to your evaluation note. This
+                        is used by the global evaluation report (R0004).
+                        [current: no]
+    --enable-report=&lt;rpt ids&gt;
+                        Enable the report(s) with the given id(s).
+    --disable-report=&lt;rpt ids&gt;
+                        Disable the report(s) with the given id(s).
+
+  Basic:
+    --required-attributes=&lt;attributes&gt;
+                        Required attributes for module, separated by a comma
+                        [current: none]
+    --no-docstring-rgx=&lt;regexp&gt;
+                        Regular expression which should only match functions
+                        or classes name which do not require a docstring
+                        [current: __.*__]
+    --module-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        module names [current:
+                        (([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$]
+    --const-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        module level names [current:
+                        (([A-Z_][A-Z0-9_]*)|(__.*__))$]
+    --class-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        class names [current: [A-Z_][a-zA-Z0-9]+$]
+    --function-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        function names [current: [a-z_][a-z0-9_]{2,30}$]
+    --method-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        method names [current: [a-z_][a-z0-9_]{2,30}$]
+    --attr-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        instance attribute names [current:
+                        [a-z_][a-z0-9_]{2,30}$]
+    --argument-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        argument names [current: [a-z_][a-z0-9_]{2,30}$]
+    --variable-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        variable names [current: [a-z_][a-z0-9_]{2,30}$]
+    --inlinevar-rgx=&lt;regexp&gt;
+                        Regular expression which should only match correct
+                        list comprehension / generator expression variable
+                        names [current: [A-Za-z_][A-Za-z0-9_]*$]
+    --good-names=&lt;names&gt;
+                        Good variable names which should always be accepted,
+                        separated by a comma [current: i,j,k,ex,Run,_]
+    --bad-names=&lt;names&gt;
+                        Bad variable names which should always be refused,
+                        separated by a comma [current:
+                        foo,bar,baz,toto,tutu,tata]
+    --bad-functions=&lt;builtin function names&gt;
+                        List of builtins function names that should not be
+                        used, separated by a comma [current:
+                        map,filter,apply,input]
+
+  Classes:
+    --ignore-iface-methods=&lt;method names&gt;
+                        List of interface methods to ignore, separated by a
+                        comma. This is used for instance to not check methods
+                        defines in Zope's Interface base class. [current: isIm
+                        plementedBy,deferred,extends,names,namesAndDescription
+                        s,queryDescriptionFor,getBases,getDescriptionFor,getDo
+                        c,getName,getTaggedValue,getTaggedValueTags,isEqualOrE
+                        xtendedBy,setTaggedValue,isImplementedByInstancesOf,ad
+                        aptWith,is_implemented_by]
+    --defining-attr-methods=&lt;method names&gt;
+                        List of method names used to declare (i.e. assign)
+                        instance attributes. [current: __init__,__new__,setUp]
+
+  Design:
+    --max-args=&lt;int&gt;    Maximum number of arguments for function / method
+                        [current: 5]
+    --max-locals=&lt;int&gt;  Maximum number of locals for function / method body
+                        [current: 15]
+    --max-returns=&lt;int&gt;
+                        Maximum number of return / yield for function / method
+                        body [current: 6]
+    --max-branchs=&lt;int&gt;
+                        Maximum number of branch for function / method body
+                        [current: 12]
+    --max-statements=&lt;int&gt;
+                        Maximum number of statements in function / method body
+                        [current: 50]
+    --max-parents=&lt;num&gt;
+                        Maximum number of parents for a class (see R0901).
+                        [current: 7]
+    --max-attributes=&lt;num&gt;
+                        Maximum number of attributes for a class (see R0902).
+                        [current: 7]
+    --min-public-methods=&lt;num&gt;
+                        Minimum number of public methods for a class (see
+                        R0903). [current: 2]
+    --max-public-methods=&lt;num&gt;
+                        Maximum number of public methods for a class (see
+                        R0904). [current: 20]
+
+  Format:
+    --max-line-length=&lt;int&gt;
+                        Maximum number of characters on a single line.
+                        [current: 80]
+    --max-module-lines=&lt;int&gt;
+                        Maximum number of lines in a module [current: 1000]
+    --indent-string=&lt;string&gt;
+                        String used as indentation unit. This is usually "
+                        " (4 spaces) or "\t" (1 tab). [current: '    ']
+
+  Imports:
+    --deprecated-modules=&lt;modules&gt;
+                        Deprecated modules which should not be used, separated
+                        by a comma [current:
+                        regsub,string,TERMIOS,Bastion,rexec]
+    --import-graph=&lt;file.dot&gt;
+                        Create a graph of every (i.e. internal and external)
+                        dependencies in the given file (report R0402 must not
+                        be disabled) [current: none]
+    --ext-import-graph=&lt;file.dot&gt;
+                        Create a graph of external dependencies in the given
+                        file (report R0402 must not be disabled) [current:
+                        none]
+    --int-import-graph=&lt;file.dot&gt;
+                        Create a graph of internal dependencies in the given
+                        file (report R0402 must not be disabled) [current:
+                        none]
+
+  Miscellaneous:
+    --notes=&lt;comma separated values&gt;
+                        List of note tags to take in consideration, separated
+                        by a comma. [current: FIXME,XXX,TODO]
+
+  Similarities:
+    --min-similarity-lines=&lt;int&gt;
+                        Minimum lines number of a similarity. [current: 4]
+    --ignore-comments=&lt;y or n&gt;
+                        Ignore comments when computing similarities. [current:
+                        yes]
+    --ignore-docstrings=&lt;y or n&gt;
+                        Ignore docstrings when computing similarities.
+                        [current: yes]
+
+  Typecheck:
+    --ignore-mixin-members=&lt;y_or_n&gt;
+                        Tells wether missing members accessed in mixin class
+                        should be ignored. A mixin class is detected if its
+                        name ends with "mixin" (case insensitive). [current:
+                        yes]
+    --ignored-classes=&lt;members names&gt;
+                        List of classes names for which member attributes
+                        should not be checked (useful for classes with
+                        attributes dynamicaly set). [current: SQLObject]
+    --zope=&lt;y_or_n&gt;     When zope mode is activated, add a predefined set of
+                        Zope acquired attributes to generated-members.
+                        [current: no]
+    --generated-members=&lt;members names&gt;
+                        List of members which are set dynamically and missed
+                        by pylint inference system, and so shouldn't trigger
+                        E0201 when accessed. [current:
+                        REQUEST,acl_users,aq_parent]
+
+  Variables:
+    --init-import=&lt;y_or_n&gt;
+                        Tells wether we should check for unused import in
+                        __init__ files. [current: no]
+    --dummy-variables-rgx=&lt;regexp&gt;
+                        A regular expression matching names used
+                        for dummy variables (i.e. not used). [current:
+                        _|dummy]
+    --additional-builtins=&lt;comma separated list&gt;
+                        List of additional names supposed to be defined in
+                        builtins. Remember that you should avoid to define new
+                        builtins when possible. [current: none]
+
+  Environment variables:
+     The following environment variables are used :
+    * PYLINTHOME
+    path to the directory where data of persistent run will be stored. If
+    not found, it defaults to ~/.pylint.d/ or .pylint.d (in the current
+    working directory) . The current PYLINTHOME is C:\Dokumente und
+    Einstellungen\xam.TECHSAT\.pylint.d.             * PYLINTRC
+    path to the configuration file. If not found, it will use the first
+    existant file in ~/.pylintrc, /etc/pylintrc. The current PYLINTRC is
+    None.
+
+  Output:
+     Using the default text output, the message format is :
+    MESSAGE_TYPE: LINE_NUM:[OBJECT:] MESSAGE
+    There are 5 kind of message types :
+    * (C) convention, for programming standard violation
+    * (R) refactor, for bad code smell
+    * (W) warning, for python specific problems
+    * (E) error, for probable bugs in the code
+    * (F) fatal, if an error occured which prevented pylint from doing
+    further processing.
+
+  Output status code:
+     Pylint should leave with following status code:
+    * 0 if everything went fine
+    * 1 if some fatal message issued
+    * 2 if some error message issued
+    * 4 if some warning message issued
+    * 8 if some refactor message issued
+    * 16 if some convention message issued
+    * 32 on usage error
+    status 1 to 16 will be bit-ORed so you can know which different
+    categories has been issued by analysing pylint output status code</pre>
+
+<h3>PyLint Messages description</h3>
+
+<div class="document">
+
+<div class="section" id="general-options">
+<h1>General options</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">rcfile:</th>
+      <td class="field-body">Specify configuration file. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">init-hook:</th>
+      <td class="field-body">Python code to execute, usually for sys.path manipulation such as pygtk.require(). </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">errors-only:</th>
+      <td class="field-body">In error mode, checkers without error messages are disabled and for others, only the ERROR
+        messages are displayed, and no reports are done by default </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">profile:</th>
+      <td class="field-body">Profiled execution. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">ignore:</th>
+      <td class="field-body">Add &lt;file or directory&gt; to the black list. It should be a base name, not a path. You may
+        set this option multiple times. Default: <tt class="docutils literal"><span class="pre">CVS</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">persistent:</th>
+      <td class="field-body">Pickle collected data for later comparisons. Default: <tt class="docutils literal"><span
+        class="pre">yes</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">cache-size:</th>
+      <td class="field-body">Set the cache size for astng objects. Default: <tt class="docutils literal"><span
+        class="pre">500</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">load-plugins:</th>
+      <td class="field-body">List of plugins (as comma separated values of python modules names) to load, usually to
+        register additional checkers. </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="commands-options">
+<h1>Commands options</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">help-msg:</th>
+      <td class="field-body">Display a help message for the given message id and exit. The value may be a comma separated
+        list of message ids.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">list-msgs:</th>
+      <td class="field-body">Generate pylint's full documentation.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">generate-rcfile:</th>
+      <td class="field-body">Generate a sample configuration file according to the current configuration. You can put other
+        options before this one to get them in the generated configuration.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">generate-man:</th>
+      <td class="field-body">Generate pylint's man page.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="messages-control-options">
+<h1>Messages control options</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">enable-checker:</th>
+      <td class="field-body">Enable only checker(s) with the given id(s). This option conflicts with the disable-checker
+        option </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">disable-checker:</th>
+      <td class="field-body">Enable all checker(s) except those with the given id(s). This option conflicts with the
+        enable-checker option </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">enable-msg-cat:</th>
+      <td class="field-body">Enable all messages in the listed categories (IRCWEF). </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">disable-msg-cat:</th>
+      <td class="field-body">Disable all messages in the listed categories (IRCWEF). Default: <tt
+        class="docutils literal"><span class="pre">I</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">enable-msg:</th>
+      <td class="field-body">Enable the message(s) with the given id(s). </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">disable-msg:</th>
+      <td class="field-body">Disable the message(s) with the given id(s). Default: <tt class="docutils literal"><span
+        class="pre">W0704</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="reports-options">
+<h1>Reports options</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">output-format:</th>
+      <td class="field-body">Set the output format. Available formats are text, parseable, colorized, msvs (visual studio)
+        and html Default: <tt class="docutils literal"><span class="pre">text</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">include-ids:</th>
+      <td class="field-body">Include message's id in output </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">files-output:</th>
+      <td class="field-body">Put messages in a separate file for each module / package specified on the command line instead
+        of printing them on stdout. Reports (if any) will be written in a file name "pylint_global.[txt|html]". </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">reports:</th>
+      <td class="field-body">Tells wether to display a full report or only the messages Default: <tt
+        class="docutils literal"><span class="pre">yes</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">evaluation:</th>
+      <td class="field-body">Python expression which should return a note less than 10 (10 is the highest note). You have
+        access to the variables errors warning, statement which respectivly contain the number of errors / warnings messages
+        and the total number of statements analyzed. This is used by the global evaluation report (R0004). Default: <tt
+        class="docutils literal"><span class="pre">10.0</span> <span class="pre">-</span> <span class="pre">((float(5</span>
+        <span class="pre">*</span> <span class="pre">error</span> <span class="pre">+</span> <span
+        class="pre">warning</span> <span class="pre">+</span> <span class="pre">refactor</span> <span class="pre">+</span>
+        <span class="pre">convention)</span> <span class="pre">/</span> <span class="pre">statement)</span> <span
+        class="pre">*</span> <span class="pre">10)</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">comment:</th>
+      <td class="field-body">Add a comment according to your evaluation note. This is used by the global evaluation report
+        (R0004). </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">enable-report:</th>
+      <td class="field-body">Enable the report(s) with the given id(s). </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">disable-report:</th>
+      <td class="field-body">Disable the report(s) with the given id(s). </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="main-messages">
+<h1>Main messages</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E0001:</th>
+      <td class="field-body">Used when a syntax error is raised for a module.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0011:</th>
+      <td class="field-body"><em>Unrecognized file option %r</em> Used when an unknown inline option is encountered.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0012:</th>
+      <td class="field-body"><em>Bad option value %r</em> Used when a bad value for an inline option is encountered.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">I0001:</th>
+      <td class="field-body"><em>Unable to run raw checkers on built-in module %s</em> Used to inform that a built-in module
+        has not been checked using the raw checkers.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">I0010:</th>
+      <td class="field-body"><em>Unable to consider inline option %r</em> Used when an inline option is either badly
+        formatted or can't be used inside modules.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">I0011:</th>
+      <td class="field-body"><em>Locally disabling %s</em> Used when an inline option disables a message or a messages
+        category.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">I0012:</th>
+      <td class="field-body"><em>Locally enabling %s</em> Used when an inline option enables a message or a messages
+        category.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">I0013:</th>
+      <td class="field-body"><em>Ignoring entire file</em> Used to inform that the file will not be checked</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0001:</th>
+      <td class="field-body">Used when an error occured preventing the analysis of a module (unable to find it for
+      instance).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0002:</th>
+      <td class="field-body"><em>%s: %s</em> Used when an unexpected error occured while building the ASTNG representation.
+        This is usually accompanied by a traceback. Please report such errors !</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0003:</th>
+      <td class="field-body"><em>ignored builtin module %s</em> Used to indicate that the user asked to analyze a builtin
+        module which has been skipped.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0004:</th>
+      <td class="field-body"><em>unexpected infered value %s</em> Used to indicate that some value of an unexpected type has
+        been infered.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="main-reports">
+<h1>Main reports</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0001:</th>
+      <td class="field-body">Messages by category</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0002:</th>
+      <td class="field-body">% errors / warnings by module</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0003:</th>
+      <td class="field-body">Messages</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0004:</th>
+      <td class="field-body">Global evaluation</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="variables-checker">
+<h2>Variables checker</h2>
+
+<p>checks for * unused variables / imports * undefined variables * redefinition of variable from builtins or from an outer
+scope * use of variable before assigment</p>
+</div>
+</div>
+
+<div class="section" id="options">
+<h1>Options</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">init-import:</th>
+      <td class="field-body">Tells wether we should check for unused import in __init__ files. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">dummy-variables-rgx:</th>
+      <td class="field-body">A regular expression matching names used for dummy variables (i.e. not used). Default: <tt
+        class="docutils literal"><span class="pre">_|dummy</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">additional-builtins:</th>
+      <td class="field-body">List of additional names supposed to be defined in builtins. Remember that you should avoid to
+        define new builtins when possible. </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="messages">
+<h1>Messages</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E0601:</th>
+      <td class="field-body"><em>Using variable %r before assignment</em> Used when a local variable is accessed before it's
+        assignment. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0602:</th>
+      <td class="field-body"><em>Undefined variable %r</em> Used when an undefined variable is accessed. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0611:</th>
+      <td class="field-body"><em>No name %r in module %r</em> Used when a name cannot be found in a module. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0601:</th>
+      <td class="field-body"><em>Global variable %r undefined at the module level</em> Used when a variable is defined
+        through the "global" statement but the variable is not defined in the module scope. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0602:</th>
+      <td class="field-body"><em>Using global for %r but no assigment is done</em> Used when a variable is defined through
+        the "global" statement but no assigment to this variable is done. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0603:</th>
+      <td class="field-body"><em>Using the global statement</em> Used when you use the "global" statement to update a global
+        variable. PyLint just try to discourage this usage. That doesn't mean you can not use it ! </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0604:</th>
+      <td class="field-body"><em>Using the global statement at the module level</em> Used when you use the "global"
+        statement at the module level since it has no effect </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0611:</th>
+      <td class="field-body"><em>Unused import %s</em> Used when an imported module or variable is not used. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0612:</th>
+      <td class="field-body"><em>Unused variable %r</em> Used when a variable is defined but not used. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0613:</th>
+      <td class="field-body"><em>Unused argument %r</em> Used when a function or method argument is not used. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0614:</th>
+      <td class="field-body"><em>Unused import %s from wildcard import</em> Used when an imported module or variable is not
+        used from a 'from X import <a href="#id1"><span class="problematic" id="id2">*</span></a>' style import. 
+
+        <div class="system-message" id="id1">
+        <p class="system-message-title">System Message: WARNING/2 (<tt class="docutils">pylint_msgs.txt</tt>, line 184);
+        <em><a href="#id2">backlink</a></em></p>
+
+        <p>Inline emphasis start-string without end-string.</p>
+        </div>
+      </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0621:</th>
+      <td class="field-body"><em>Redefining name %r from outer scope (line %s)</em> Used when a variable's name hide a name
+        defined in the outer scope. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0622:</th>
+      <td class="field-body"><em>Redefining built-in %r</em> Used when a variable or function override a built-in. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0631:</th>
+      <td class="field-body"><em>Using possibly undefined loop variable %r</em> Used when an loop variable (i.e. defined by
+        a for loop or a list comprehension or a generator expression) is used outside the loop. </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="basic-checker">
+<h2>Basic checker</h2>
+
+<p>checks for : * doc strings * modules / classes / functions / methods / arguments / variables name * number of arguments,
+local variables, branchs, returns and statements in functions, methods * required module attributes * dangerous default
+values as arguments * redefinition of function / method / class * uses of the global statement</p>
+</div>
+</div>
+
+<div class="section" id="id3">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 209); <em><a
+href="#id3">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">required-attributes:</th>
+      <td class="field-body">Required attributes for module, separated by a comma </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">no-docstring-rgx:</th>
+      <td class="field-body">Regular expression which should only match functions or classes name which do not require a
+        docstring Default: <tt class="docutils literal"><span class="pre">__.*__</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">module-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct module names Default: <tt
+        class="docutils literal"><span class="pre">(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">const-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct module level names Default: <tt
+        class="docutils literal"><span class="pre">(([A-Z_][A-Z0-9_]*)|(__.*__))$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">class-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct class names Default: <tt
+        class="docutils literal"><span class="pre">[A-Z_][a-zA-Z0-9]+$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">function-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct function names Default: <tt
+        class="docutils literal"><span class="pre">[a-z_][a-z0-9_]{2,30}$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">method-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct method names Default: <tt
+        class="docutils literal"><span class="pre">[a-z_][a-z0-9_]{2,30}$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">attr-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct instance attribute names Default: <tt
+        class="docutils literal"><span class="pre">[a-z_][a-z0-9_]{2,30}$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">argument-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct argument names Default: <tt
+        class="docutils literal"><span class="pre">[a-z_][a-z0-9_]{2,30}$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">variable-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct variable names Default: <tt
+        class="docutils literal"><span class="pre">[a-z_][a-z0-9_]{2,30}$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">inlinevar-rgx:</th>
+      <td class="field-body">Regular expression which should only match correct list comprehension / generator expression
+        variable names Default: <tt class="docutils literal"><span class="pre">[A-Za-z_][A-Za-z0-9_]*$</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">good-names:</th>
+      <td class="field-body">Good variable names which should always be accepted, separated by a comma Default: <tt
+        class="docutils literal"><span class="pre">i,j,k,ex,Run,_</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">bad-names:</th>
+      <td class="field-body">Bad variable names which should always be refused, separated by a comma Default: <tt
+        class="docutils literal"><span class="pre">foo,bar,baz,toto,tutu,tata</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">bad-functions:</th>
+      <td class="field-body">List of builtins function names that should not be used, separated by a comma Default: <tt
+        class="docutils literal"><span class="pre">map,filter,apply,input</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id4">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 268); <em><a
+href="#id4">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E0100:</th>
+      <td class="field-body"><em>__init__ method is a generator</em> Used when the special class method __init__ is turned
+        into a generator by a yield in its body.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0101:</th>
+      <td class="field-body"><em>Explicit return in __init__</em> Used when the special class method __init__ has an
+        explicit return value.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0102:</th>
+      <td class="field-body"><em>%s already defined line %s</em> Used when a function / class / method is redefined.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0103:</th>
+      <td class="field-body"><em>%r not properly in loop</em> Used when break or continue keywords are used outside a
+      loop.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0104:</th>
+      <td class="field-body"><em>Return outside function</em> Used when a "return" statement is found outside a function or
+        method.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0105:</th>
+      <td class="field-body"><em>Yield outside function</em> Used when a "yield" statement is found outside a function or
+        method.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0106:</th>
+      <td class="field-body"><em>Return with argument inside generator</em> Used when a "return" statement with an argument
+        is found outside in a generator function or method (e.g. with some "yield" statements).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0101:</th>
+      <td class="field-body"><em>Unreachable code</em> Used when there is some code behind a "return" or "raise" statement,
+        which will never be accessed.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0102:</th>
+      <td class="field-body"><em>Dangerous default value %s as argument</em> Used when a mutable value as list or dictionary
+        is detected in a default value for an argument.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0104:</th>
+      <td class="field-body"><em>Statement seems to have no effect</em> Used when a statement doesn't have (or at least
+        seems to) any effect.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0105:</th>
+      <td class="field-body"><em>String statement has no effect</em> Used when a string is used as a statement (which of
+        course has no effect). This is a particular case of W0104 with its own message so you can easily disable it if
+        you're using those strings as documentation, instead of comments.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0107:</th>
+      <td class="field-body"><em>Unnecessary pass statement</em> Used when a "pass" statement that can be avoided is
+        encountered.)</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0108:</th>
+      <td class="field-body"><em>Lambda may not be necessary</em> Used when the body of a lambda expression is a function
+        call on the same argument list as the lambda itself; such lambda expressions are in all but a few cases replaceable
+        with the function being called in the body of the lambda.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0122:</th>
+      <td class="field-body"><em>Use of the exec statement</em> Used when you use the "exec" statement, to discourage its
+        usage. That doesn't mean you can not use it !</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0141:</th>
+      <td class="field-body"><em>Used builtin function %r</em> Used when a black listed builtin function is used (see the
+        bad-function option). Usual black listed functions are the ones like map, or filter , where Python offers now some
+        cleaner alternative like list comprehension.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0142:</th>
+      <td class="field-body"><em>Used * or *</em> magic* Used when a function or method is called using <cite>*args</cite>
+        or <cite>**kwargs</cite> to dispatch arguments. This doesn't improve readability and should be used with care.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0102:</th>
+      <td class="field-body"><em>Black listed name "%s"</em> Used when the name is listed in the black list (unauthorized
+        names).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0103:</th>
+      <td class="field-body"><em>Invalid name "%s" (should match %s)</em> Used when the name doesn't match the regular
+        expression associated to its type (constant, variable, class...).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0111:</th>
+      <td class="field-body"><em>Missing docstring</em> Used when a module, function, class or method has no docstring. Some
+        special methods like __init__ doesn't necessary require a docstring.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0112:</th>
+      <td class="field-body"><em>Empty docstring</em> Used when a module, function, class or method has an empty docstring
+        (it would be too easy ;).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0121:</th>
+      <td class="field-body"><em>Missing required attribute "%s"</em> Used when an attribute required for modules is
+      missing.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="reports">
+<h1>Reports</h1>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0101:</th>
+      <td class="field-body">Statistics by type</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="typecheck-checker">
+<h2>Typecheck checker</h2>
+
+<p>try to find bugs in the code using type inference</p>
+</div>
+</div>
+
+<div class="section" id="id5">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 340); <em><a
+href="#id5">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">ignore-mixin-members:</th>
+      <td class="field-body">Tells wether missing members accessed in mixin class should be ignored. A mixin class is
+        detected if its name ends with "mixin" (case insensitive). Default: <tt class="docutils literal"><span
+        class="pre">yes</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">ignored-classes:</th>
+      <td class="field-body">List of classes names for which member attributes should not be checked (useful for classes
+        with attributes dynamicaly set). Default: <tt class="docutils literal"><span class="pre">SQLObject</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">zope:</th>
+      <td class="field-body">When zope mode is activated, add a predefined set of Zope acquired attributes to
+        generated-members. </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">generated-members:</th>
+      <td class="field-body">List of members which are set dynamically and missed by pylint inference system, and so
+        shouldn't trigger E0201 when accessed. Default: <tt class="docutils literal"><span
+        class="pre">REQUEST,acl_users,aq_parent</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id6">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 361); <em><a
+href="#id6">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E1101:</th>
+      <td class="field-body"><em>%s %r has no %r member</em> Used when a variable is accessed for an unexistant member.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E1102:</th>
+      <td class="field-body"><em>%s is not callable</em> Used when an object being called has been infered to a non callable
+        object</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E1103:</th>
+      <td class="field-body"><em>%s %r has no %r member (but some types could not be inferred)</em> Used when a variable is
+        accessed for an unexistant member, but astng was not able to interpret all possible types of this variable.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E1111:</th>
+      <td class="field-body"><em>Assigning to function call which doesn't return</em> Used when an assigment is done on a
+        function call but the infered function doesn't return anything.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W1111:</th>
+      <td class="field-body"><em>Assigning to function call which only returns None</em> Used when an assigment is done on a
+        function call but the infered function returns nothing but None.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="newstyle-checker">
+<h2>Newstyle checker</h2>
+
+<p>checks for usage of new style capabilities on old style classes and other new/old styles conflicts problems * use of
+property, __slots__, super * "super" usage</p>
+</div>
+</div>
+
+<div class="section" id="id7">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 385); <em><a
+href="#id7">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E1001:</th>
+      <td class="field-body"><em>Use __slots__ on an old style class</em> Used when an old style class use the __slots__
+        attribute.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E1002:</th>
+      <td class="field-body"><em>Use super on an old style class</em> Used when an old style class use the super
+      builtin.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E1003:</th>
+      <td class="field-body"><em>Bad first argument %r given to super class</em> Used when another argument than the current
+        class is given as first argument of the super builtin.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W1001:</th>
+      <td class="field-body"><em>Use of "property" on an old style class</em> Used when PyLint detect the use of the builtin
+        "property" on an old style class while this is relying on new style classes features</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="imports-checker">
+<h2>Imports checker</h2>
+
+<p>checks for * external modules dependencies * relative / wildcard imports * cyclic imports * uses of deprecated modules</p>
+</div>
+</div>
+
+<div class="section" id="id8">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 407); <em><a
+href="#id8">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">deprecated-modules:</th>
+      <td class="field-body">Deprecated modules which should not be used, separated by a comma Default: <tt
+        class="docutils literal"><span class="pre">regsub,string,TERMIOS,Bastion,rexec</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">import-graph:</th>
+      <td class="field-body">Create a graph of every (i.e. internal and external) dependencies in the given file (report
+        R0402 must not be disabled) </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">ext-import-graph:</th>
+      <td class="field-body">Create a graph of external dependencies in the given file (report R0402 must not be disabled)
+      </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">int-import-graph:</th>
+      <td class="field-body">Create a graph of internal dependencies in the given file (report R0402 must not be disabled)
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id9">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 423); <em><a
+href="#id9">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">W0401:</th>
+      <td class="field-body"><em>Wildcard import %s</em> Used when <cite>from module import *</cite> is detected.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0402:</th>
+      <td class="field-body"><em>Uses of a deprecated module %r</em> Used a module marked as deprecated is imported.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0403:</th>
+      <td class="field-body"><em>Relative import %r</em> Used when an import relative to the package directory is
+      detected.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0404:</th>
+      <td class="field-body"><em>Reimport %r (imported line %s)</em> Used when a module is reimported multiple times.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0406:</th>
+      <td class="field-body"><em>Module import itself</em> Used when a module is importing itself.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0410:</th>
+      <td class="field-body"><em>__future__ import is not the first non docstring statement</em> Python 2.5 and greater
+        require __future__ import to be the first non docstring statement in the module.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0401:</th>
+      <td class="field-body"><em>Cyclic import (%s)</em> Used when a cyclic import between two or more modules is
+      detected.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0401:</th>
+      <td class="field-body"><em>Unable to import %r (%s)</em> Used when pylint has been unable to import a module.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id10">
+<h1>Reports</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 443); <em><a
+href="#id10">backlink</a></em></p>
+Duplicate implicit target name: "reports".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0401:</th>
+      <td class="field-body">External dependencies</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0402:</th>
+      <td class="field-body">Modules dependencies graph</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="classes-checker">
+<h2>Classes checker</h2>
+
+<p>checks for : * methods without self as first argument * overridden methods signature * access only to existant members
+via self * attributes not defined in the __init__ method * supported interfaces implementation * unreachable code</p>
+</div>
+</div>
+
+<div class="section" id="id11">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 459); <em><a
+href="#id11">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">ignore-iface-methods:</th>
+      <td class="field-body">List of interface methods to ignore, separated by a comma. This is used for instance to not
+        check methods defines in Zope's Interface base class. Default: <tt class="docutils literal"><span
+        class="pre">isImplementedBy,deferred,extends,names,namesAndDescriptions,queryDescriptionFor,getBases,getDescriptionFor,getDoc,getName,getTaggedValue,getTaggedValueTags,isEqualOrExtendedBy,setTaggedValue,isImplementedByInstancesOf,adaptWith,is_implemented_by</span></tt>
+      </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name" colspan="2">defining-attr-methods:</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td class="field-body">List of method names used to declare (i.e. assign) instance attributes. Default: <tt
+        class="docutils literal"><span class="pre">__init__,__new__,setUp</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id12">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 471); <em><a
+href="#id12">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E0202:</th>
+      <td class="field-body"><em>An attribute inherited from %s hide this method</em> Used when a class defines a method
+        which is hiden by an instance attribute from an ancestor class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0203:</th>
+      <td class="field-body"><em>Access to member %r before its definition line %s</em> Used when an instance member is
+        accessed before it's actually assigned.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0211:</th>
+      <td class="field-body"><em>Method has no argument</em> Used when a method which should have the bound instance as
+        first argument has no argument defined.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0213:</th>
+      <td class="field-body"><em>Method should have "self" as first argument</em> Used when a method has an attribute
+        different the "self" as first argument. This is considered as an error since this is a soooo common convention that
+        you should'nt break it!</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0221:</th>
+      <td class="field-body"><em>Interface resolved to %s is not a class</em> Used when a class claims to implement an
+        interface which is not a class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0222:</th>
+      <td class="field-body"><em>Missing method %r from %s interface</em> Used when a method declared in an interface is
+        missing from a class implementing this interface</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0201:</th>
+      <td class="field-body"><em>Attribute %r defined outside __init__</em> Used when an instance attribute is defined
+        outside the __init__ method.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0211:</th>
+      <td class="field-body"><em>Static method with %r as first argument</em> Used when a static method has "self" or "cls"
+        as first argument.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0212:</th>
+      <td class="field-body"><em>Access to a protected member %s of a client class</em> Used when a protected member (i.e.
+        class member with a name beginning with an underscore) is access outside the class or a descendant of the class
+        where it's defined.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0221:</th>
+      <td class="field-body"><em>Arguments number differs from %s method</em> Used when a method has a different number of
+        arguments than in the implemented interface or in an overridden method.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0222:</th>
+      <td class="field-body"><em>Signature differs from %s method</em> Used when a method signature is different than in the
+        implemented interface or in an overridden method.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0223:</th>
+      <td class="field-body"><em>Method %r is abstract in class %r but is not overridden</em> Used when an abstract method
+        (ie raise NotImplementedError) is not overridden in concrete class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0231:</th>
+      <td class="field-body"><em>__init__ method from base class %r is not called</em> Used when an ancestor class method
+        has an __init__ method which is not called by a derived class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0232:</th>
+      <td class="field-body"><em>Class has no __init__ method</em> Used when a class has no __init__ method, neither its
+        parent classes.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0233:</th>
+      <td class="field-body"><em>__init__ method from a non direct base class %r is called</em> Used when an __init__ method
+        is called on a class which is not in the direct ancestors for the analysed class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0201:</th>
+      <td class="field-body"><em>Method could be a function</em> Used when a method doesn't use its bound instance, and so
+        could be written as a function.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0202:</th>
+      <td class="field-body"><em>Class method should have "cls" as first argument</em> Used when a class method has an
+        attribute different than "cls" as first argument, to easily differentiate them from regular instance methods.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0203:</th>
+      <td class="field-body"><em>Metaclass method should have "mcs" as first argument</em> Used when a metaclass method has
+        an attribute different the "mcs" as first argument.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0202:</th>
+      <td class="field-body"><em>Unable to check methods signature (%s / %s)</em> Used when PyLint has been unable to check
+        methods signature compatibility for an unexpected raison. Please report this kind if you don't make sense of it.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0220:</th>
+      <td class="field-body"><em>failed to resolve interfaces implemented by %s (%s)</em> Used when a PyLint as failed to
+        find interfaces implemented by a class</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="design-checker">
+<h2>Design checker</h2>
+
+<p>checks for sign of poor/misdesign: * number of methods, attributes, local variables... * size, complexity of functions,
+methods</p>
+</div>
+</div>
+
+<div class="section" id="id13">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 537); <em><a
+href="#id13">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">max-args:</th>
+      <td class="field-body">Maximum number of arguments for function / method Default: <tt class="docutils literal"><span
+        class="pre">5</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-locals:</th>
+      <td class="field-body">Maximum number of locals for function / method body Default: <tt class="docutils literal"><span
+        class="pre">15</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-returns:</th>
+      <td class="field-body">Maximum number of return / yield for function / method body Default: <tt
+        class="docutils literal"><span class="pre">6</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-branchs:</th>
+      <td class="field-body">Maximum number of branch for function / method body Default: <tt class="docutils literal"><span
+        class="pre">12</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-statements:</th>
+      <td class="field-body">Maximum number of statements in function / method body Default: <tt
+        class="docutils literal"><span class="pre">50</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-parents:</th>
+      <td class="field-body">Maximum number of parents for a class (see R0901). Default: <tt class="docutils literal"><span
+        class="pre">7</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-attributes:</th>
+      <td class="field-body">Maximum number of attributes for a class (see R0902). Default: <tt
+        class="docutils literal"><span class="pre">7</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">min-public-methods:</th>
+      <td class="field-body">Minimum number of public methods for a class (see R0903). Default: <tt
+        class="docutils literal"><span class="pre">2</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-public-methods:</th>
+      <td class="field-body">Maximum number of public methods for a class (see R0904). Default: <tt
+        class="docutils literal"><span class="pre">20</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id14">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 576); <em><a
+href="#id14">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0901:</th>
+      <td class="field-body"><em>Too many ancestors (%s/%s)</em> Used when class has too many parent classes, try to reduce
+        this to get a more simple (and so easier to use) class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0902:</th>
+      <td class="field-body"><em>Too many instance attributes (%s/%s)</em> Used when class has too many instance attributes,
+        try to reduce this to get a more simple (and so easier to use) class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0903:</th>
+      <td class="field-body"><em>Too few public methods (%s/%s)</em> Used when class has too few public methods, so be sure
+        it's really worth it.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0904:</th>
+      <td class="field-body"><em>Too many public methods (%s/%s)</em> Used when class has too many public methods, try to
+        reduce this to get a more simple (and so easier to use) class.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0911:</th>
+      <td class="field-body"><em>Too many return statements (%s/%s)</em> Used when a function or method has too many return
+        statement, making it hard to follow.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0912:</th>
+      <td class="field-body"><em>Too many branches (%s/%s)</em> Used when a function or method has too many branches, making
+        it hard to follow.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0913:</th>
+      <td class="field-body"><em>Too many arguments (%s/%s)</em> Used when a function or method takes too many
+      arguments.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0914:</th>
+      <td class="field-body"><em>Too many local variables (%s/%s)</em> Used when a function or method has too many local
+        variables.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0915:</th>
+      <td class="field-body"><em>Too many statements (%s/%s)</em> Used when a function or method has too many statements.
+        You should then split it in smaller functions / methods.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0921:</th>
+      <td class="field-body"><em>Abstract class not referenced</em> Used when an abstract class is not used as ancestor
+        anywhere.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0922:</th>
+      <td class="field-body"><em>Abstract class is only referenced %s times</em> Used when an abstract class is used less
+        than X times as ancestor.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">R0923:</th>
+      <td class="field-body"><em>Interface not implemented</em> Used when an interface class is not implemented
+      anywhere.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="exceptions-checker">
+<h2>Exceptions checker</h2>
+
+<p>checks for * excepts without exception filter * type of raise argument : string, Exceptions, other values</p>
+</div>
+</div>
+
+<div class="section" id="id15">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 616); <em><a
+href="#id15">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E0701:</th>
+      <td class="field-body"><em>Bad except clauses order (%s)</em> Used when except clauses are not in the correct order
+        (from the more specific to the more generic). If you don't fix the order, some exceptions may not be catched by the
+        most specific handler.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0702:</th>
+      <td class="field-body"><em>Raising %s while only classes, instances or string are allowed</em> Used when something
+        which is neither a class, an instance or a string is raised (i.e. a <cite>TypeError</cite> will be raised).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0710:</th>
+      <td class="field-body"><em>Raising a new style class</em> Used when a new style class is raised since it's not
+        possible with python &lt; 2.5.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0701:</th>
+      <td class="field-body"><em>Raising a string exception</em> Used when a string exception is raised.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0702:</th>
+      <td class="field-body"><em>No exception type(s) specified</em> Used when an except clause doesn't specify exceptions
+        type to catch.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0703:</th>
+      <td class="field-body"><em>Catch "Exception"</em> Used when an except catches Exception instances.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0704:</th>
+      <td class="field-body"><em>Except doesn't do anything</em> Used when an except clause does nothing but "pass" and
+        there is no "else" clause.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0710:</th>
+      <td class="field-body"><em>Exception doesn't inherit from standard "Exception" class</em> Used when a custom exception
+        class is raised but doesn't inherit from the builtin "Exception" class.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="similarities-checker">
+<h2>Similarities checker</h2>
+
+<p>checks for similarities and duplicated code. This computation may be memory / CPU intensive, so you should disable it if
+you experiments some problems.</p>
+</div>
+</div>
+
+<div class="section" id="id16">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 648); <em><a
+href="#id16">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">min-similarity-lines:</th>
+      <td class="field-body">Minimum lines number of a similarity. Default: <tt class="docutils literal"><span
+        class="pre">4</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">ignore-comments:</th>
+      <td class="field-body">Ignore comments when computing similarities. Default: <tt class="docutils literal"><span
+        class="pre">yes</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">ignore-docstrings:</th>
+      <td class="field-body">Ignore docstrings when computing similarities. Default: <tt class="docutils literal"><span
+        class="pre">yes</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id17">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 663); <em><a
+href="#id17">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0801:</th>
+      <td class="field-body"><em>Similar lines in %s files</em> Indicates that a set of similar lines has been detected
+        among multiple file. This usually means that the code should be refactored to avoid this duplication.</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id18">
+<h1>Reports</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 670); <em><a
+href="#id18">backlink</a></em></p>
+Duplicate implicit target name: "reports".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0801:</th>
+      <td class="field-body">Duplication</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="format-checker">
+<h2>Format checker</h2>
+
+<p>checks for : * unauthorized constructions * strict indentation * line length * use of &lt;&gt; instead of !=</p>
+</div>
+</div>
+
+<div class="section" id="id19">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 683); <em><a
+href="#id19">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">max-line-length:</th>
+      <td class="field-body">Maximum number of characters on a single line. Default: <tt class="docutils literal"><span
+        class="pre">80</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">max-module-lines:</th>
+      <td class="field-body">Maximum number of lines in a module Default: <tt class="docutils literal"><span
+        class="pre">1000</span></tt> </td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">indent-string:</th>
+      <td class="field-body">String used as indentation unit. This is usually " " (4 spaces) or "t" (1 tab). Default: <tt
+        class="docutils literal"><span class="pre">'</span> <span class="pre">'</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id20">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 699); <em><a
+href="#id20">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">W0301:</th>
+      <td class="field-body"><em>Unnecessary semicolon</em> Used when a statement is endend by a semi-colon (";"), which
+        isn't necessary (that's python, not C ;).</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0311:</th>
+      <td class="field-body"><em>Bad indentation. Found %s %s, expected %s</em> Used when an unexpected number of
+        indentation's tabulations or spaces has been found.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0312:</th>
+      <td class="field-body"><em>Found indentation with %ss instead of %ss</em> Used when there are some mixed tabs and
+        spaces in a module.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0331:</th>
+      <td class="field-body"><em>Use of the &lt;&gt; operator</em> Used when the deprecated "&lt;&gt;" operator is used
+        instead of "!=".</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0332:</th>
+      <td class="field-body"><em>Use l as long integer identifier</em> Used when a lower case "l" is used to mark a long
+        integer. You should use a upper case "L" since the letter "l" looks too much like the digit "1"</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0333:</th>
+      <td class="field-body"><em>Use of the `` operator</em> Used when the deprecated "``" (backtick) operator is used
+        instead of the str() function.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0301:</th>
+      <td class="field-body"><em>Line too long (%s/%s)</em> Used when a line is longer than a given number of
+      characters.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0302:</th>
+      <td class="field-body"><em>Too many lines in module (%s)</em> Used when a module has too much lines, reducing its
+        readibility.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0321:</th>
+      <td class="field-body"><em>More than one statement on a single line</em> Used when more than on statement are found on
+        the same line.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0322:</th>
+      <td class="field-body"><em>Operator not preceded by a space</em> Used when one of the following operator (!= | &lt;= |
+        == | &gt;= | &lt; | &gt; | = | += | -= | *= | /= | %) is not preceded by a space.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0323:</th>
+      <td class="field-body"><em>Operator not followed by a space</em> Used when one of the following operator (!= | &lt;= |
+        == | &gt;= | &lt; | &gt; | = | += | -= | *= | /= | %) is not followed by a space.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">C0324:</th>
+      <td class="field-body"><em>Comma not followed by a space</em> Used when a comma (",") is not followed by a space.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">F0321:</th>
+      <td class="field-body"><em>Format detection error in %r</em> Used when an unexpected error occured in bad format
+        detection.Please report the error if it occurs.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="miscellaneous-checker">
+<h2>Miscellaneous checker</h2>
+
+<p>checks for: * warning notes in the code like FIXME, XXX * PEP 263: source code with non ascii character but no encoding
+declaration</p>
+</div>
+</div>
+
+<div class="section" id="id21">
+<h1>Options</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 742); <em><a
+href="#id21">backlink</a></em></p>
+Duplicate implicit target name: "options".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">notes:</th>
+      <td class="field-body">List of note tags to take in consideration, separated by a comma. Default: <tt
+        class="docutils literal"><span class="pre">FIXME,XXX,TODO</span></tt> </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="section" id="id22">
+<h1>Messages</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 749); <em><a
+href="#id22">backlink</a></em></p>
+Duplicate implicit target name: "messages".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">E0501:</th>
+      <td class="field-body"><em>Non ascii characters found but no encoding specified (PEP 263)</em> Used when some non
+        ascii characters are detected but now encoding is specified, as explicited in the PEP 263.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0502:</th>
+      <td class="field-body"><em>Wrong encoding specified (%s)</em> Used when a known encoding is specified but the file
+        doesn't seem to be actually in this encoding.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">E0503:</th>
+      <td class="field-body"><em>Unknown encoding specified (%s)</em> Used when an encoding is specified, but it's unknown
+        to Python.</td>
+    </tr>
+    <tr class="field">
+      <th class="field-name">W0511:</th>
+      <td class="field-body">Used when a warning note as FIXME or XXX is detected.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="section" id="metrics-checker">
+<h2>Metrics checker</h2>
+
+<p>does not check anything but gives some raw metrics : * total number of lines * total number of code lines * total number
+of docstring lines * total number of comments lines * total number of empty lines</p>
+</div>
+</div>
+
+<div class="section" id="id23">
+<h1>Reports</h1>
+
+<div class="system-message">
+<p class="system-message-title">System Message: INFO/1 (<tt class="docutils">pylint_msgs.txt</tt>, line 772); <em><a
+href="#id23">backlink</a></em></p>
+Duplicate implicit target name: "reports".</div>
+
+<table class="docutils field-list" frame="void" rules="none">
+  <col class="field-name" />
+  <col class="field-body" />
+  <tbody valign="top">
+    <tr class="field">
+      <th class="field-name">R0701:</th>
+      <td class="field-body">Raw metrics</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div class="footer">
+<hr class="footer" />
+<a class="reference external" href="pylint_msgs.txt">View document source</a>. Generated on: 2009-05-26 15:47 UTC. Generated
+by <a class="reference external" href="http://docutils.sourceforge.net/">Docutils</a> from <a class="reference external"
+href="http://docutils.sourceforge.net/rst.html">reStructuredText</a> source. </div>
+</body>
+</html>
