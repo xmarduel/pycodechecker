@@ -674,6 +674,10 @@ class GenericToolLoggerView(QtWidgets.QTextEdit):
                 elif arg == "FONTFAMILY_TELETYPE":
                     self.setFontFamily("courier")
                     
+                # hack on windows
+                self.setFontFamily("courier")
+                #self.setFontSize(14)
+
             elif action == "SetLineFontStyle":
                 '''
                 FONTSTYLE_NORMAL

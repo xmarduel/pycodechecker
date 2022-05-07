@@ -38,9 +38,9 @@ class MainWindow(QtWidgets.QMainWindow):
         super(MainWindow, self).__init__()
  
         if platform.system() == 'Windows':
-            self.settings_file = "C:\\PYTHON_TOOLS\\pycodechecker\\srcs\\myapp.ini"
+            self.settings_file = os.path.join(os.environ['PYANALYSERS_HOME'], 'srcs', 'myapp.ini')
         else:
-            self.settings_file = "/Users/xavier/PYTHON_TOOLS/pycodechecker/srcs/myapp.ini"
+            self.settings_file = os.path.join(os.environ['PYANALYSERS_HOME'], 'srcs', 'myapp.ini')
         
         self.ui = self.loadUi("PythonCodeAnalysersUI.ui")
 
@@ -372,11 +372,15 @@ class MainWindow(QtWidgets.QMainWindow):
         PYTHONEXEC    = os.environ["PYTHONEXEC"]
 
         if platform.system() == 'Windows':
-            SCRIPT = tool
+            SCRIPT = tool.lower()
+            if tool == 'PyMetrics':
+                SCRIPT = 'PyMetrics.PyMetrics'
         else:  # 'Linux', 'Darwin', ...
             SCRIPT = tool.lower()
 
         analyserExe = "%s -m %s" % (PYTHONEXEC, os.path.join(PYTHONSCRIPTS, SCRIPT))
+
+        print("Tool", analyserExe)
 
         return analyserExe
 
@@ -740,7 +744,14 @@ Running:
 def main():
     '''
     '''
-    os.environ['PYTHONEXEC'] = "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
+    if platform.system() == 'Windows':
+        os.environ['PYTHONEXEC'] = "C:\\Users\\xavie\\AppData\\Local\\Programs\\Python\\Python39\\python.exe"
+    elif platform.system() == 'Linux':
+        os.environ['PYTHONEXEC'] = "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
+    elif platform.system() == 'Darwin':
+        os.environ['PYTHONEXEC'] = "/Library/Frameworks/Python.framework/Versions/3.7/bin/python3"
+    else:
+        pass
     
     if platform.system() == 'Windows':
         os.environ['PYTHONSCRIPTS']  = os.path.join(os.environ['PYTHONEXEC'], 'Scripts')

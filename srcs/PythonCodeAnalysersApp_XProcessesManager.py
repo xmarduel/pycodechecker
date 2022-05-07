@@ -515,6 +515,10 @@ class XProcess:
                 self.logging_queues[self.tool].SetLineFontStyle(style)
                 self.logging_queues[self.tool].SetLineFontWeight(weight)
 
+                # windows
+                if line[-1] == '\r':
+                    line = line[0:-1]
+
                 self.logging_queues[self.tool].AppendText(line)
                 
             # ... but at the next run
